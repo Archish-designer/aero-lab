@@ -55,7 +55,7 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // drawImage — replaces a rectangle with an actual car and draws the car image based on its position
-    ctx.drawImage(carImage, position, 150, 1000, 700);// this changes the width and height of the car.
+    ctx.drawImage(carImage, position, 1150, 1000, 1700);// this changes the width and height of the car.
 
     position += velocity;
     requestAnimationFrame(animate);
