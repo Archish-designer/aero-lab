@@ -1,25 +1,25 @@
 // GLOBAL FORCE VARIABLES
 let speed = 0;        // Float
-let friction = 0.2;   // Float
+let friction = 0;   // Float
 let tailwind = 0;     // Float
-let air = 0.2;        // Float
+let air = 0;        // Float
 let velocity = 0;     // Float
 let position = 0;     // Float
 let isRunning = false; // Boolean
 
-// LOAD CAR IMAGE
+// The image for the car
 const carImage = new Image();
 carImage.src = "assets/car.png";
 
 /**
- * FUNCTION: startSim() — triggered by Start button
- * Calculates velocity based on GUI inputs and starts animation loop.
+ * FUNCTION: startSim() — is triggered by the Start button which Calculates the velocity and other external factors based on GUI inputs.
  */
 function startSim() {
   speed = parseFloat(document.getElementById("speedSlider").value);
   friction = parseFloat(document.getElementById("frictionSlider").value);
   tailwind = parseFloat(document.getElementById("tailwindSlider").value);
   air = parseFloat(document.getElementById("airSlider").value);
+//this takes the users input based on the slider and makes it into a float for calculations
 
   velocity = calculateNetVelocity();
 
@@ -27,30 +27,32 @@ function startSim() {
     isRunning = true;
     animate(); // repetition structure
   } else {
-    alert("Too much resistance. Car can't move."); // selection structure
-  }
-}
+    alert("The car has stopped: net velocity is zero due to opposing forces.");
 
+  } //this makes sure that if the velocity is greater than zero then the car should move, however if it isnt then it should stop.
+}
 /**
  * FUNCTION: calculateNetVelocity()
- * Uses arithmetic operators to determine final velocity
+ * Uses arithmetic operators [(speed + tailwind) - (friction + air)] to determine the final velocity of the car
  */
+
 function calculateNetVelocity() {
   return (speed + tailwind) - (friction + air);
 }
 
+
 /**
  * FUNCTION: animate()
- * Draws the car image at updated position each frame.
+ * This makes the cars image update based on its movement.
  */
 function animate() {
-  if (isRunning) {
+  if (isRunning) { // boolean check to see if the car is moving (selection control)
     const canvas = document.getElementById("simCanvas");
     const ctx = canvas.getContext("2d");
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // DRAW IMAGE — replaces rectangle with actual car
+    // drawImage — replaces a rectangle with an actual car
     ctx.drawImage(carImage, position, 150, 100, 50);
 
     position += velocity;
