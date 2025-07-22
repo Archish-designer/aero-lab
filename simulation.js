@@ -10,7 +10,9 @@ let isRunning = false; // Boolean
 // The image for the car
 const carImage = new Image();
 carImage.src = "car.png";
-
+carImage.onload = () => {
+  console.log("Car image loaded!");
+};
 /**
  * FUNCTION: startSim() — is triggered by the Start button which Calculates the velocity and other external factors based on GUI inputs.
  */
