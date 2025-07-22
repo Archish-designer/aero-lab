@@ -53,7 +53,7 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // drawImage — replaces a rectangle with an actual car and draws the car image based on its position
-    ctx.drawImage(carImage, position, 150, 100, 50);
+    ctx.fillRect(carImage, position, 150, 100, 50);
 
     position += velocity;
     requestAnimationFrame(animate);
