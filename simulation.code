@@ -1,0 +1,59 @@
+// GLOBAL FORCE VARIABLES
+let speed = 0;        // Float
+let friction = 0.2;   // Float
+let tailwind = 0;     // Float
+let air = 0.2;        // Float
+let velocity = 0;     // Float
+let position = 0;     // Float
+let isRunning = false; // Boolean
+
+// LOAD CAR IMAGE
+const carImage = new Image();
+carImage.src = "assets/car.png";
+
+/**
+ * FUNCTION: startSim() — triggered by Start button
+ * Calculates velocity based on GUI inputs and starts animation loop.
+ */
+function startSim() {
+  speed = parseFloat(document.getElementById("speedSlider").value);
+  friction = parseFloat(document.getElementById("frictionSlider").value);
+  tailwind = parseFloat(document.getElementById("tailwindSlider").value);
+  air = parseFloat(document.getElementById("airSlider").value);
+
+  velocity = calculateNetVelocity();
+
+  if (velocity > 0) {
+    isRunning = true;
+    animate(); // repetition structure
+  } else {
+    alert("Too much resistance. Car can't move."); // selection structure
+  }
+}
+
+/**
+ * FUNCTION: calculateNetVelocity()
+ * Uses arithmetic operators to determine final velocity
+ */
+function calculateNetVelocity() {
+  return (speed + tailwind) - (friction + air);
+}
+
+/**
+ * FUNCTION: animate()
+ * Draws the car image at updated position each frame.
+ */
+function animate() {
+  if (isRunning) {
+    const canvas = document.getElementById("simCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // DRAW IMAGE — replaces rectangle with actual car
+    ctx.drawImage(carImage, position, 150, 100, 50);
+
+    position += velocity;
+    requestAnimationFrame(animate);
+  }
+}
