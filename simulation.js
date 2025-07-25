@@ -61,15 +61,4 @@ function animate(){
     requestAnimationFrame(animate);
   }
 }
-  /**
- * resetSim(): Resets the car to its starting position and stops the animation.
- */
-function resetSim() {
-  isRunning = false;        // Stop animation loop
-  position = 0;             // Reset car’s position to the far left
-  velocity = 0;             // resets the velocity
-  const canvas = document.getElementById("simCanvas");
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);  
-  ctx.drawImage(carImage, position, 150, 250, 120);  // Draws the car at the starting position
-}
+
