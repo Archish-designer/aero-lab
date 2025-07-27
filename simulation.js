@@ -16,6 +16,22 @@ carImage.onload = () => {
 /**
  * FUNCTION: startSim() — is triggered by the Start button which Calculates the velocity and other external factors based on GUI inputs.
  */
+let canvas = document.getElementById("simCanvas");
+let ctx = canvas.getContext("2d");
+
+function drawCar() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "blue";
+  ctx.fillRect(100, 150, 80, 40); // Simple car body
+}
+
+function resetSim() {
+  drawCar(); // Redraws the car on reset
+}
+
+// Initial draw
+drawCar();
+
 function startSim() {
   speed = parseFloat(document.getElementById("speedSlider").value);
   friction = parseFloat(document.getElementById("frictionSlider").value);
