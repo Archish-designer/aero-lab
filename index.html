@@ -7,13 +7,10 @@
 </head>
 
 <body>
-  <h1>Aero-lab Physics simulation</h1>
-
-  //instructions for aero-lab users 
+  <h1>Aero-lab Physics simulation</h1> 
   
-  <p>Adjust the sliders to change certain external forces. Click Start to run the simulation.</p>
+  <p>Adjust the sliders to change certain external forces. Click Start to run the simulation.</p> //instructions for aero-lab users
 
-  //These are the GUI sliders, each linked to a physical parameter
   <label>Friction:</label>
   <input type="range" id="frictionSlider" min="0" max="1" step="0.1">
 
@@ -24,12 +21,12 @@
   <input type="range" id="speedSlider" min="0" max="20" step="1">
 
   <label>Air Resistance:</label>
-  <input type="range" id="airSlider" min="0" max="1" step="0.1">
+  <input type="range" id="airSlider" min="0" max="1" step="0.1"> //These are the GUI sliders, each linked to a physical parameter
 
   <p>Click the start button to begin!</p>
 
-  //starts the simulation
-  <button onclick="startSim()">Start</button>
+  
+  <button onclick="startSim()">Start</button> //starts the simulation
 
   <canvas 
     id="simCanvas" 
