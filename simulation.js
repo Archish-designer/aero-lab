@@ -1,98 +1,67 @@
 // GLOBAL FORCE VARIABLES
 let speed = 0;        // Float
-let friction = 0;   // Float
+let friction = 0;     // Float
 let tailwind = 0;     // Float
-let air = 0;        // Float
+let air = 0;          // Float
 let velocity = 0;     // Float
 let position = 0;     // Float
 let isRunning = false; // Boolean
 
-// The image for the car
+// This Loads the car image
 const carImage = new Image();
-carImage.src = "car.png";
+carImage.src = "car.png"; 
 carImage.onload = () => {
   console.log("Car image loaded!");
+  drawCar(); // This Draws the cars image using the png image i put
 };
-/**
- * FUNCTION: startSim() — is triggered by the Start button which Calculates the velocity and other external factors based on GUI inputs.
- */
+
+
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
+
 function drawCar() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "blue";
-  ctx.fillRect(100, 150, 80, 40); // Simple car body
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position 
+  ctx.drawImage(carImage, position, 150, 250, 120); 
 }
+
 
 function resetSim() {
-  drawCar(); // Redraws the car on reset
+  isRunning = false;     // This stops the animation loop and resets the position of the car, then it draws the car to position 0 which is its starting spot
+  position = 0;          
+  drawCar();             
 }
 
-// Initial draw
-drawCar();
 
 function startSim() {
+  // This takes the user input from GUI sliders and converts it into floats
   speed = parseFloat(document.getElementById("speedSlider").value);
   friction = parseFloat(document.getElementById("frictionSlider").value);
   tailwind = parseFloat(document.getElementById("tailwindSlider").value);
   air = parseFloat(document.getElementById("airSlider").value);
-//this takes the users input based on the slider and makes it into a float for calculations
 
-  velocity = calculateNetVelocity();
+  velocity = calculateNetVelocity(); // Calculate net velocity
 
+  // Selection control: The car should only move if the veloity is greater than zero else it should not move
   if (velocity > 0) {
     isRunning = true;
-    animate(); // repetition structure
+    animate(); // Begin animation loop
   } else {
-    alert("The car has stopped: net velocity is zero due to opposing forces.");
-
-  } //this makes sure that if the velocity is greater than zero then the car should move, however if it isnt then it should stop.
+    alert("The car will not move since the net velocity is zero due to the opposing forces.");
+  }
 }
-/**
- * FUNCTION: calculateNetVelocity()
- * Uses arithmetic operators [(speed + tailwind) - (friction + air)] to determine the final velocity of the car
- */
 
+ // this function uses arithmetic operators [(speed + tailwind) - (friction + air)] to calculate the cars velocity
 function calculateNetVelocity() {
   return (speed + tailwind) - (friction + air);
 }
-function drawCar() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(carImage, position, 150, 250, 120);
-}
-//clears the cars position back to its starting point
 
-carImage.onload = () => {
-  drawCar(); 
-};
 
-// This makes the cars image update based on its movement.
-function animate(){
-  if (isRunning) { // boolean check to see if the car is moving (selection control)
-    const canvas = document.getElementById("simCanvas");
-    const ctx = canvas.getContext("2d");
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // drawImage — replaces a rectangle with an actual car and draws the car image based on its position
-    ctx.drawImage(carImage, position, 150, 200, 100);// this changes the width and height of the car.
-
-    position += velocity;
-    requestAnimationFrame(animate);
+function animate() {
+  if (isRunning) { // Selection control: this means that the condition should only run if the car is moving 
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous position
+    ctx.drawImage(carImage, position, 150, 250, 120); 
+    position += velocity; 
+    requestAnimationFrame(animate); 
   }
-}
-// ▶️ Start simulation
-function startSim() {
-  if (!isRunning) {
-    isRunning = true;
-    animate();
-  }
-}
-
-// this Resets simulation
-function resetSim() {
-  isRunning = false;
-  position = 0;
-  drawCar();
 }
