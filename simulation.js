@@ -21,14 +21,11 @@ let ctx = canvas.getContext("2d");
 
 // adding the background image
 const background = new Image();
-background.src = "road.png.jpg"; // ✅ Use your exact file name
+background.src = "road.jpg"; // the file name for my background image
 
 background.onload = function() {
-  // Draw background when it's loaded
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-  // Then draw the car on top of it
-  drawCar(); // Only call this after background is drawn
+   drawCar(); // This makes us draw the car on top of the background image
 };
 
 
