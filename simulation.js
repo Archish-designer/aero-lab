@@ -61,4 +61,8 @@ function animate(){
     requestAnimationFrame(animate);
   }
 }
-
+function resetSim() {
+  isRunning = false;
+  position = 0;
+  drawCar();
+}
