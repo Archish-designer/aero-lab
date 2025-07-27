@@ -41,12 +41,17 @@ function startSim() {
 function calculateNetVelocity() {
   return (speed + tailwind) - (friction + air);
 }
+function drawCar() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(carImage, position, 150, 250, 120);
+}
+//clears the cars position back to its starting point
 
+carImage.onload = () => {
+  drawCar(); 
+};
 
-/**
- * FUNCTION: animate()
- * This makes the cars image update based on its movement.
- */
+// This makes the cars image update based on its movement.
 function animate(){
   if (isRunning) { // boolean check to see if the car is moving (selection control)
     const canvas = document.getElementById("simCanvas");
@@ -61,6 +66,15 @@ function animate(){
     requestAnimationFrame(animate);
   }
 }
+// ▶️ Start simulation
+function startSim() {
+  if (!isRunning) {
+    isRunning = true;
+    animate();
+  }
+}
+
+// this Resets simulation
 function resetSim() {
   isRunning = false;
   position = 0;
