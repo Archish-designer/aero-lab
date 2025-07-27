@@ -19,6 +19,18 @@ carImage.onload = () => {
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
+// adding the background image
+const background = new Image();
+background.src = "road.png.jpg"; // ✅ Use your exact file name
+
+background.onload = function() {
+  // Draw background when it's loaded
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+  // Then draw the car on top of it
+  drawCar(); // Only call this after background is drawn
+};
+
 
 function drawCar() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position 
