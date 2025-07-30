@@ -15,7 +15,7 @@ carImage.onload = () => {
   drawCar(); // This Draws the cars image using the png image i put
 };
 
-
+<img src="road.jpg">
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
