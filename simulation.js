@@ -19,10 +19,6 @@ carImage.onload = () => {
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
-// adding the background image
-const background = new Image();
-background.src = "road.jpg"; // the file name for my background image
-
 background.onload = function() {
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
    drawCar(); // This makes us draw the car on top of the background image
