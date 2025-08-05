@@ -26,17 +26,16 @@
 
   <p>Click the start button to begin!</p>
 
-  <button onclick="startSim()">Start</button> <!--starts the simulation -->
-
-
-
-  <!--reset button for the whole simulation -->
-  <button onclick="resetSim()">Reset</button> 
+  <!-- 🚀 Container for control buttons -->
+  <div style="margin-bottom: 20px;">
+    <button onclick="startSim()">Start</button> <!--starts the simulation -->
+    <button onclick="resetSim()">Reset</button> <!--reset button for the whole simulation -->
+  </div>
 
   <!--canvas element for car drawing -->
-<canvas id="simCanvas" width="1000" height="500"></canvas>
-
+  <canvas id="simCanvas" width="800" height="400" style="border: 1px solid #000;"></canvas>
 
   <script src="simulation.js"></script>
 </body>
 </html>
+
