@@ -18,14 +18,6 @@ carImage.onload = () => {
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
-// adding the background image 
-const background = new Image();
-background.src = "road.png.jpg";
-
-background.onload = function() {
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  drawCar();
-};
 
 // Car image setup...
 
