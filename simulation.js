@@ -15,53 +15,49 @@ carImage.onload = () => {
   drawCar(); // This Draws the cars image using the png image i put
 };
 
+// Set up canvas and context
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
-
-// Car image setup...
-
-
+// This draws the car based on its position and image
 function drawCar() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position 
   ctx.drawImage(carImage, position, 150, 250, 120); 
 }
 
-
+// This resets the simulation and puts the car back at its starting point
 function resetSim() {
-  isRunning = false;     // This stops the animation loop and resets the position of the car, then it draws the car to position 0 which is its starting spot
-  position = 0;          
-  drawCar();             
+  isRunning = false;    
+  position = 0;         
+  drawCar();            
 }
 
-
+// This starts the simulation and calculates user inputs
 function startSim() {
-  // This takes the user input from GUI sliders and converts it into floats
   speed = parseFloat(document.getElementById("speedSlider").value);
   friction = parseFloat(document.getElementById("frictionSlider").value);
   tailwind = parseFloat(document.getElementById("tailwindSlider").value);
   air = parseFloat(document.getElementById("airSlider").value);
 
-  velocity = calculateNetVelocity(); // Calculate net velocity
+  velocity = calculateNetVelocity(); 
 
-  // Selection control: The car should only move if the veloity is greater than zero else it should not move
   if (velocity > 0) {
     isRunning = true;
-    animate(); // Begin animation loop
+    animate(); 
   } else {
     alert("The car will not move since the net velocity is zero due to the opposing forces.");
   }
 }
 
- // this function uses arithmetic operators [(speed + tailwind) - (friction + air)] to calculate the cars velocity
+// this function uses arithmetic operators [(speed + tailwind) - (friction + air)] to calculate the cars velocity
 function calculateNetVelocity() {
   return (speed + tailwind) - (friction + air);
 }
 
-
+// The car movement loop
 function animate() {
-  if (isRunning) { // Selection control: this means that the condition should only run if the car is moving 
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous position
+  if (isRunning) { 
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
     ctx.drawImage(carImage, position, 150, 250, 120); 
     position += velocity; 
     requestAnimationFrame(animate); 
