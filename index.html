@@ -48,6 +48,15 @@
   <!-- this puts the  start button under the instructional text -->
   <button onclick="startSim()">Start</button> <!--starts the simulation -->
 
+
+  <!-- Car selection dropdown -->
+<label for="carSelector">Choose your car:</label>
+<select id="carSelector" onchange="changeCar()">
+  <option value="car3.png">Car 3</option>
+  <option value="car4.png">Car 4</option>
+  <option value="car5.png">Car 5</option>
+</select>
+
   <!--canvas element for car drawing -->
   <canvas id="simCanvas" width="1300" height="500"></canvas>
 
