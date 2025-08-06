@@ -9,7 +9,7 @@ let isRunning = false; // Boolean
 
 // This Loads the car image
 const carImage = new Image();
-carImage.src = "car.png"; 
+carImage.src = "car1.png"; 
 carImage.onload = () => {
   console.log("Car image loaded!");
   drawCar(); // This Draws the cars image using the png image i put
