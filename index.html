@@ -2,15 +2,33 @@
 <html>
 <head>
   <title>Aero-lab</title>
-  
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Bonus styling for clarity */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px 0;
+      display: block;
+    }
+
+    #startBtn {
+      margin-bottom: 20px;
+    }
+
+    #resetBtn {
+      margin-top: 30px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1> Aero-lab Physics simulation!</h1> 
-  
-  <p>Adjust the sliders to change certain external forces. Click Start to run the simulation.</p> 
-  <!--instructions for aero-lab users -->
+  <h1>Aero-lab Physics Simulation!</h1>
+
+  <!--  START Button at the top -->
+  <button id="startBtn" onclick="startSim()">Start</button>
+
+  <p>Adjust the sliders to change certain external forces. Click Start to run the simulation.</p>
 
   <label>Friction:</label>
   <input type="range" id="frictionSlider" min="0" max="1" step="0.1">
@@ -22,20 +40,16 @@
   <input type="range" id="speedSlider" min="0" max="20" step="1">
 
   <label>Air Resistance:</label>
-  <input type="range" id="airSlider" min="0" max="1" step="0.1"> <!-- These are the GUI sliders, each linked to a physical parameter-->
+  <input type="range" id="airSlider" min="0" max="1" step="0.1">
 
-  <p>Click the start button to begin!</p>
+  <p>Click the Start button to begin!</p>
 
-  <!-- 🚀 Container for control buttons -->
-  <div style="margin-bottom: 20px;">
-    <button onclick="startSim()">Start</button> <!--starts the simulation -->
-    <button onclick="resetSim()">Reset</button> <!--reset button for the whole simulation -->
-  </div>
-
-  <!--canvas element for car drawing -->
+  <!--  Canvas for Simulation -->
   <canvas id="simCanvas" width="800" height="400" style="border: 1px solid #000;"></canvas>
+
+  <!-- 🧼 RESET Button at the bottom -->
+  <button id="resetBtn" onclick="resetSim()">Reset</button>
 
   <script src="simulation.js"></script>
 </body>
 </html>
-
