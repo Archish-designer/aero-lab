@@ -30,10 +30,22 @@ function changeCar() {
 let canvas = document.getElementById("simCanvas");
 let ctx = canvas.getContext("2d");
 
+// This Loads the background image
+const background = new Image();
+background.src = "city.png"; //filename
+
+background.onload = function() {
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+  drawCar(); // Draw the car on top of the background
+};
+
+
 // This draws the car based on its position and image
 function drawCar() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position 
-  ctx.drawImage(carImage, position, 150, 250, 120); 
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position
+   // Draw background first
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+   ctx.drawImage(carImage, position, 150, 250, 120); 
 }
 
 // This resets the simulation and puts the car back at its starting point
@@ -69,6 +81,8 @@ function calculateNetVelocity() {
 function animate() {
   if (isRunning) { 
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    // Draw background
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(carImage, position, 150, 250, 120); 
     position += velocity; 
     requestAnimationFrame(animate); 
