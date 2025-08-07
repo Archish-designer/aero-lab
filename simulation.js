@@ -8,12 +8,23 @@ let position = 0;     // Float
 let isRunning = false; // Boolean
 
 // This Loads the car image
-const carImage = new Image();
-carImage.src = "car3.png"; 
+let carImage = new Image();
+carImage.src = "car3.png"; // Default car
+
 carImage.onload = () => {
   console.log("Car image loaded!");
   drawCar(); // This Draws the cars image using the png image i put
 };
+
+// Function to change car based on user selection
+function changeCar() {
+  const selectedCar = document.getElementById("carSelector").value;
+  carImage.src = selectedCar;
+
+  carImage.onload = () => {
+    drawCar(); // Redraw with new car
+  };
+}
 
 // Set up canvas and context
 let canvas = document.getElementById("simCanvas");
