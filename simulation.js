@@ -22,7 +22,7 @@ carImage.src = "car3.png"; // Default car
 
 carImage.onload = () => {
   console.log("Car image loaded!");
-  drawCar(); // Draw the car image
+  drawCar(); // This Draws the cars image using the png image i put
 };
 
 // Function to change car based on user selection
@@ -37,7 +37,7 @@ function changeCar() {
 
 // This Loads the background image
 const background = new Image();
-background.src = "city.png"; // filename
+background.src = "city.png"; //filename
 
 background.onload = function() {
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
@@ -46,9 +46,10 @@ background.onload = function() {
 
 // This draws the car based on its position and image
 function drawCar() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height); // Draw background
-  ctx.drawImage(carImage, position, roadY, carWidth, carHeight); // Draw car
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position
+  // Draw background first
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+  ctx.drawImage(carImage, position, roadY, carWidth, carHeight); 
 }
 
 // This resets the simulation and puts the car back at its starting point
@@ -67,6 +68,13 @@ function startSim() {
 
   velocity = calculateNetVelocity(); 
 
+  // Update force panel
+  document.getElementById("speedVal").innerText = speed;
+  document.getElementById("tailwindVal").innerText = tailwind;
+  document.getElementById("frictionVal").innerText = friction;
+  document.getElementById("airVal").innerText = air;
+  document.getElementById("velocityVal").innerText = velocity.toFixed(2);
+
   if (velocity > 0) {
     isRunning = true;
     animate(); 
@@ -75,7 +83,7 @@ function startSim() {
   }
 }
 
-// This function uses arithmetic operators to calculate the car's velocity
+// this function uses arithmetic operators [(speed + tailwind) - (friction + air)] to calculate the cars velocity
 function calculateNetVelocity() {
   return (speed + tailwind) - (friction + air);
 }
@@ -84,10 +92,28 @@ function calculateNetVelocity() {
 function animate() {
   if (isRunning) { 
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height); // Draw background
-    ctx.drawImage(carImage, position, roadY, carWidth, carHeight); // Draw car
+    // Draw background
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(carImage, position, roadY, carWidth, carHeight); 
     position += velocity; 
     requestAnimationFrame(animate); 
   }
 }
 
+// This shows the quiz box
+function showQuiz() {
+  document.getElementById("quizBox").style.display = "block";
+  document.getElementById("quizFeedback").innerText = ""; // Reset feedback
+}
+
+// This handles quiz answers
+function handleAnswer(choice) {
+  const feedback = document.getElementById("quizFeedback");
+  if (choice === "tailwind") {
+    feedback.innerText = "✅ Correct! Tailwind helps push the car forward.";
+    feedback.style.color = "green";
+  } else {
+    feedback.innerText = "❌ Try again. That force actually slows the car down.";
+    feedback.style.color = "red";
+  }
+}
