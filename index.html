@@ -48,6 +48,35 @@
   <!-- this puts the  start button under the instructional text -->
   <button onclick="startSim()">Start</button> <!--starts the simulation -->
 
+  <!-- 📊 Force Breakdown Panel -->
+<div id="forcePanel" style="margin-top: 10px;">
+  <h3>Force Breakdown</h3>
+  <p>Speed: <span id="speedVal">0</span> m/s</p>
+  <p>Tailwind: <span id="tailwindVal">0</span> m/s</p>
+  <p>Friction: <span id="frictionVal">0</span></p>
+  <p>Air Resistance: <span id="airVal">0</span></p>
+  <p><strong>Net Velocity:</strong> <span id="velocityVal">0</span> m/s</p>
+</div>
+
+<!--  Physics Explanation Box -->
+<div id="explanationBox" style="margin-top: 20px;">
+  <h3>How It Works</h3>
+  <p>Net velocity is calculated using the formula:</p>
+  <p><code>(Speed + Tailwind) - (Friction + Air Resistance)</code></p>
+  <p>This shows how helpful forces increase motion, while opposing forces reduce it.</p>
+</div>
+
+<!-- 🧪 Interactive Quiz -->
+<button onclick="showQuiz()">Take a Quick Quiz</button>
+<div id="quizBox" style="display:none; margin-top: 10px;">
+  <p>Which force helps the car move forward?</p>
+  <button onclick="handleAnswer('tailwind')">Tailwind</button>
+  <button onclick="handleAnswer('friction')">Friction</button>
+  <button onclick="handleAnswer('air')">Air Resistance</button>
+  <p id="quizFeedback" style="margin-top:10px; font-weight:bold;"></p>
+</div>
+
+
 
   <!-- Car selection dropdown -->
 <label for="carSelector">Choose your car:</label>
