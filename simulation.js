@@ -7,6 +7,11 @@ let velocity = 0;     // Float
 let position = 0;     // Float
 let isRunning = false; // Boolean
 
+// GLOBAL CAR DIMENSIONS
+const carWidth = 250;
+const carHeight = 120;
+const roadY = canvas.height - carHeight - 20; // Adjust the height to lift or lower the car
+
 // This Loads the car image
 let carImage = new Image();
 carImage.src = "car3.png"; // Default car
@@ -39,13 +44,12 @@ background.onload = function() {
   drawCar(); // Draw the car on top of the background
 };
 
-
 // This draws the car based on its position and image
 function drawCar() {
   ctx.clearRect(0, 0, canvas.width, canvas.height); // This clears the cars position and redraws it to its starting position
-   // Draw background first
+  // Draw background first
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-   ctx.drawImage(carImage, position, 150, 250, 120); 
+  ctx.drawImage(carImage, position, roadY, carWidth, carHeight); 
 }
 
 // This resets the simulation and puts the car back at its starting point
@@ -83,7 +87,7 @@ function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
     // Draw background
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    ctx.drawImage(carImage, position, 150, 250, 120); 
+    ctx.drawImage(carImage, position, roadY, carWidth, carHeight); 
     position += velocity; 
     requestAnimationFrame(animate); 
   }
