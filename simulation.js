@@ -10,7 +10,7 @@ let isRunning = false; // Boolean
 // GLOBAL CAR DIMENSIONS
 const carWidth = 250;
 const carHeight = 120;
-const roadY = canvas.height - carHeight - 20; // Adjust the height to lift or lower the car
+const roadY = canvas.height - carHeight - 5; // Adjust the height to lift or lower the car
 
 // This Loads the car image
 let carImage = new Image();
